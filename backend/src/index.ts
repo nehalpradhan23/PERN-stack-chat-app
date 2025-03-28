@@ -7,13 +7,15 @@ dotenv.config();
 
 const app = express();
 
+app.use(express.json()); // for parsing application/json data
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-// app.get("/", (req, res) => {
-//   res.send("Hello world 2");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello world 2");
+});
 
-app.listen(5000, () => {
-  console.log("server running on port 5000");
+app.listen(3000, () => {
+  console.log("server running on port 3000");
 });
