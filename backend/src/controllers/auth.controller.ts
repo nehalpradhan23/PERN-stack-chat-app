@@ -57,6 +57,33 @@ export const signup = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (req: Request, res: Response) => {};
+export const login = async (req: Request, res: Response) => {
+  try {
+    const { username, password } = req.body;
+    const user = await prisma.user.findUnique({ where: { username } });
+
+    if (!user) {
+      return res.status(400).json({ error: "Username does not exist" });
+    }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user?.password);
+
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ error: "wrong passowrd" });
+    }
+
+    generateToken(user.id, res);
+
+    res.status(200).json({
+      id: user.id,
+      fullName: user.fullName,
+      username: user.username,
+      profilePic: user.profilePic,
+    });
+  } catch (error: any) {
+    console.log("error in login controller", error.message);
+    res.status(500).json({ error: "internal server error" });
+  }
+};
 
 export const logout = async (req: Request, res: Response) => {};
