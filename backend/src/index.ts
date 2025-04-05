@@ -8,6 +8,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3000;
+
 const app = express();
 
 app.use(cookieParser()); // to parse the cookies
@@ -20,6 +22,6 @@ app.get("/", (req, res) => {
   res.send("Hello world 2");
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("server running on port 3000");
 });
