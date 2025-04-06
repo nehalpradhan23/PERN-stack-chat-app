@@ -14,15 +14,18 @@ const Message = ({ message }: { message: MessageType }) => {
 
   const img = fromMe ? authUser?.profilePic : selectedConversation?.profilePic;
 
-  const bubbleBg = fromMe ? "bg-blue-500 text-white" : "bg-gray-200";
+  const bubbleBg = fromMe
+    ? "bg-blue-500 text-white"
+    : "bg-gray-300 border border-black/20";
+
   return (
     <div className={`${chatClass} my-4`}>
       <div className="hidden md:block">
-        <div className="w-6 md:w-10 rounded-full">
-          <img alt="Tailwind CSS chat bubble component" src={img} />
+        <div className="w-6 md:w-10 rounded-full border border-black/40">
+          <img alt="img" src={img} />
         </div>
       </div>
-      <p className={`${bubbleBg} text-sm md:text-md rounded-md p-1 mx-2`}>
+      <p className={`${bubbleBg} text-sm md:text-md rounded-md py-1 px-2 mx-2`}>
         {message.body}
       </p>
       <span className="opacity-50 text-xs flex gap-1 items-center">
