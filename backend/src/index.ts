@@ -5,12 +5,13 @@ import authRoutes from "./routes/auth.route.js";
 import messageRoutes from "./routes/message.route.js";
 
 import dotenv from "dotenv";
+import { app, server } from "./socket/socket.js";
 
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
-const app = express();
+// const app = express();
 
 app.use(cookieParser()); // to parse the cookies
 app.use(express.json()); // for parsing application/json data
@@ -22,6 +23,6 @@ app.get("/", (req, res) => {
   res.send("Hello world 2");
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("server running on port 3000");
 });

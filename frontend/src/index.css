@@ -1,2 +1,19 @@
 @import "tailwindcss";
 /* @plugin "daisyui"; */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #d1d1d1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #757575;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #505050;
+}
